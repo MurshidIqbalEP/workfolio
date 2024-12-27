@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/murshid-.png" />
+        <link rel="icon" href="/favicon.png" />
         {/* Other head elements */}
       </head>
       <body
