@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Murshid Iqbal EP",
   description: "portfolio",
+  icons: {
+    icon: '/favicon.png', // /public/favicon.png
+  },
 };
 
 export default function RootLayout({
@@ -25,11 +28,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.png" />
-        {/* Other head elements */}
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
