@@ -16,9 +16,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Murshid Iqbal EP",
   description: "portfolio",
-  icons: {
-    icon: '/favicon.png', // /public/favicon.png
-  },
 };
 
 export default function RootLayout({
