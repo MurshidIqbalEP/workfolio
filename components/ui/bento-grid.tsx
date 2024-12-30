@@ -1,16 +1,28 @@
 "use client";
+
 import { useState } from "react";
-
 import dynamic from "next/dynamic";
-const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
-
 import { cn } from "@/lib/utils";
-
 import { BackgroundGradientAnimation } from "./background-gradient-animation";
 import animationData from "@/data/confetti.json";
 import { HoverBorderGradient } from "./hover-border-gradient";
 import { FaCopy } from "react-icons/fa";
 import TiltedScroll from "./tiltedScroll";
+
+// Dynamically import Lottie on the client-side only
+const Player = dynamic(() => import('lottie-react'), { ssr: false });
+
+const LottieWrapper = ({ animationData, loop }: { animationData: any; loop: boolean }) => (
+  <Player
+    autoplay
+    loop={loop}
+    animationData={animationData}
+    style={{
+      height: "200px",
+      width: "400px",
+    }}
+  />
+);
 
 export const BentoGrid = ({
   className,
@@ -50,19 +62,10 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript","Javascipt"];
-  const rightLists = ["React", "Next", "MongoDB","Tailwind"];
+  const leftLists = ["ReactJS", "Express", "Typescript", "Javascript"];
+  const rightLists = ["React", "Next", "MongoDB", "Tailwind"];
 
   const [copied, setCopied] = useState(false);
-
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   const handleCopy = () => {
     const text = "murshidm2x@gmail.com";
@@ -79,8 +82,7 @@ export const BentoGridItem = ({
       )}
       style={{
         background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
     >
       <div className={`${id === 6 && "flex justify-center "} h-full`}>
@@ -93,11 +95,7 @@ export const BentoGridItem = ({
             />
           )}
         </div>
-        <div
-          className={`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          } `}
-        >
+        <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`}>
           {spareImg && (
             <img
               src={spareImg}
@@ -121,9 +119,7 @@ export const BentoGridItem = ({
           <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
             {description}
           </div>
-          <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
-          >
+          <div className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}>
             {title}
           </div>
 
@@ -135,21 +131,19 @@ export const BentoGridItem = ({
                 {leftLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
                   >
                     {item}
                   </span>
                 ))}
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+                <span className="lg:py-4 lg:px-3 py-4 px-3 rounded-lg text-center bg-[#10132E]"></span>
               </div>
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+                <span className="lg:py-4 lg:px-3 py-4 px-3 rounded-lg text-center bg-[#10132E]"></span>
                 {rightLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
                   >
                     {item}
                   </span>
@@ -158,22 +152,22 @@ export const BentoGridItem = ({
             </div>
           )}
           {id === 5 && (
-            <div className="flex  justify-start items-center space-x-4  mt-5">
+            <div className="flex justify-start items-center space-x-4 mt-5">
               <a
                 href="https://www.instagram.com/_mursh_d"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:scale-125 transition-transform "
+                className="text-white hover:scale-125 transition-transform"
               >
-                <img src="/insta.svg" alt="Instagram" className="w-8 h-8 " />
+                <img src="/insta.svg" alt="Instagram" className="w-8 h-8" />
               </a>
               <a
                 href="https://github.com/MurshidIqbalEP"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:scale-125 transition-transform "
+                className="text-white hover:scale-125 transition-transform"
               >
-                <img src="/git.svg" alt="Github" className="w-8 h-8 " />
+                <img src="/git.svg" alt="Github" className="w-8 h-8" />
               </a>
               <a
                 href="https://www.linkedin.com/in/murshidiqbalep/"
@@ -181,19 +175,15 @@ export const BentoGridItem = ({
                 rel="noopener noreferrer"
                 className="text-white hover:scale-125 transition-transform"
               >
-                <img src="/link.svg" alt="Linkedin" className="w-8 h-8 " />
+                <img src="/link.svg" alt="Linkedin" className="w-8 h-8" />
               </a>
             </div>
           )}
 
           {id === 6 && (
             <div className="mt-5 relative flex justify-center items-center">
-              <div
-                className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "block"
-                }`}
-              >
-                <Lottie options={defaultOptions} height={200} width={400} />
+              <div className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"}`}>
+                <LottieWrapper animationData={animationData} loop={copied} />
               </div>
 
               <HoverBorderGradient
